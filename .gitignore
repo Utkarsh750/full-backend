@@ -1,0 +1,65 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+dist/
+build/
+.tmp/
+.temp/
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache
+.npm/
+
+# Environment files
+.env
+.env.*
+
+# Editor directories and files
+.vscode/
+*.suo
+*.ntvs*
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Misc
+.cache/
+.parcel-cache/
+
+# Local dev and tooling
+.turbo/
+/.pnp/
+.pnp.js
+
+# Debug
+debug.log
+
+# Lockfiles (optional - uncomment to ignore)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
