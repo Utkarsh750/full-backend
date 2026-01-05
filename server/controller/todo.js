@@ -36,3 +36,33 @@ export const getAllTodos = async (req, res) => {
   }
 };
 
+export const updateTodo = async (req, res) => {
+  try {
+    const todoId = req.params.todoId;
+    const { title } = req.body;
+
+    const todo = await Todo.findByIdAndUpdate(todoId, { title }, { new: true });
+    todo.save();
+    return res.status(200).json({
+      success: true,
+      todo,
+      message: "Todo Updated",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteTodo = async (req, res) => {
+  try {
+    const todoId = req.params.todoId;
+    await Todo.findByIdAndDelete(todoId);
+
+    return res.status(200).json({
+      success: true,
+      message: "Todo delete successfully",
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

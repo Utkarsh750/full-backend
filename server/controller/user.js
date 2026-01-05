@@ -1,5 +1,6 @@
 import { User } from "../models/user.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
   try {
@@ -61,11 +62,32 @@ export const login = async (req, res) => {
       });
     }
 
-    return res.status(200).json({
-      success: true,
-      message: `Welcome back ${user.fullName}`,
+    const token = jwt.sign({ userId: user._id }, process.env.SECRET_KEY, {
+      expiresIn: "1d",
     });
+    return res
+      .status(200)
+      .cookie("token", token, {
+        httpOnly: true,
+        sameSite: "strict",
+        maxAge: 24 * 60 * 60 * 1000,
+      })
+      .json({
+        success: true,
+        message: `Welcome back ${user.fullName}`,
+      });
   } catch (error) {
     console.error("error", error);
   }
 };
+
+export const logout = async (_,res) => {
+  try {
+    return res.status(200).cookie("token", "", {maxAge:0}).json({
+      success: true,
+      message: "User logout successfully."
+    })
+  } catch (error) {
+    
+  }
+}
